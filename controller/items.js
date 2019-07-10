@@ -65,3 +65,17 @@ exports.update_item = (req, res) => {
         return res.send({data: {message: 'Item updated!'}});
     });
 }
+
+exports.delete_item = (req, res) => {
+
+    const { id } = req.params;
+
+    const query = `DELETE FROM items WHERE id = ${id}`;
+
+    db.query(query, (err, result, fields) => {
+
+        if(err) return res.send(err);
+
+        return res.send({data: {message: `Item with id ${id} successfully deleted!`}});
+    });
+}
