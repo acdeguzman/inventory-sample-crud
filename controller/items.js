@@ -14,6 +14,20 @@ exports.get_items = (req, res) => {
     });
 }
 
+exports.get_item = (req, res) => {
+
+    const { id } = req.params;
+
+    const query =  `SELECT * FROM items where id = ${id}`;
+
+    db.query(query, (err, result, fields) => {
+
+        if(err) return res.send(err);
+
+        return res.send({data: result[0]});
+    });
+}
+
 exports.add_item = (req, res) => {
 
     const {
