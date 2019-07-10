@@ -9,3 +9,8 @@ app.listen(port, () => {
 
     console.log(`Listening at port ${port}`);
 });
+
+app.get('/', (req, res) => {
+
+    res.send('Sample Inventory CRUD landing page');
+});
