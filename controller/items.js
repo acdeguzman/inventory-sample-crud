@@ -45,3 +45,23 @@ exports.add_item = (req, res) => {
         return res.send({data: {message: "Item added!"}});
     });
 }
+
+exports.update_item = (req, res) => {
+
+    const { id } = req.params;
+    
+    const {
+        name,
+        qty,
+        amount
+    } = req.body;
+
+    const query = `UPDATE items SET name = '${name}', qty = ${qty}, amount = ${amount} WHERE id = ${id}`;
+
+    db.query(query, (err, result, fields) => {
+
+        if(err) return res.send(err);
+
+        return res.send({data: {message: 'Item updated!'}});
+    });
+}
