@@ -79,3 +79,8 @@ exports.delete_item = (req, res) => {
         return res.send({data: {message: `Item with id ${id} successfully deleted!`}});
     });
 }
+
+exports.add_item_ui = (req, res) => {
+
+    return res.render('pages/add_item')
+}
