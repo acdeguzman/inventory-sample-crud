@@ -21,3 +21,9 @@ mysql -uroot -puser inventory < <path_to_the_project>/database/sample_data.sql
 ```
 npm run dev
 ```
+6. Open your browser and go to 
+```
+localhost:3000
+```
+
+For any questions, feel free to send me a message at adcdeguzman@gmail.com
