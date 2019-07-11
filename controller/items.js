@@ -84,13 +84,20 @@ exports.delete_item = (req, res) => {
 
     const { id } = req.params;
 
-    const query = `DELETE FROM items WHERE id = ${id}`;
+    let query = `DELETE FROM items WHERE id = ${id}`;
 
     db.query(query, (err, result, fields) => {
 
         if(err) return res.send(err);
 
-        return res.send({data: {message: `Item with id ${id} successfully deleted!`}});
+        query = `SELECT * FROM items`;
+        
+        db.query(query, (err1, result1) => {
+
+            if(err) return res.send(err);
+
+            return res.render('pages/items', {data: result1});
+        });
     });
 }
 
