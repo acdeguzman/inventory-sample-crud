@@ -32,7 +32,7 @@
                                         Edit
                                     </button>
                                 </form>
-                                <form action="http://localhost:3000/api/v1/items/<%= item.id %>" id="delete<%= item.id %>" method="DELETE">
+                                <form action="http://localhost:3000/api/v1/delete_item/<%= item.id %>" id="delete<%= item.id %>" method="GET">
                                     <button class="btn btn-outline-danger btn-sm" type="submit" form="delete<%= item.id %>" style="margin-left: 5px;">
                                         Delete
                                     </button>
