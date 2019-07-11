@@ -10,7 +10,7 @@ exports.get_items = (req, res) => {
 
         if(err) return err;
 
-        return res.send({data: result});
+        return res.render('pages/items',{ data: result });
     });
 }
 
