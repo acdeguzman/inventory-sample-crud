@@ -24,7 +24,7 @@ exports.get_item = (req, res) => {
 
         if(err) return res.send(err);
 
-        return res.send({data: result[0]});
+        return res.render('pages/update_item', {data: result[0]});
     });
 }
 
@@ -63,13 +63,20 @@ exports.update_item = (req, res) => {
         amount
     } = req.body;
 
-    const query = `UPDATE items SET name = '${name}', qty = ${qty}, amount = ${amount} WHERE id = ${id}`;
+    let query = `UPDATE items SET name = '${name}', qty = ${qty}, amount = ${amount} WHERE id = ${id}`;
 
     db.query(query, (err, result, fields) => {
 
         if(err) return res.send(err);
 
-        return res.send({data: {message: 'Item updated!'}});
+        query = `SELECT * FROM items`;
+
+        db.query(query, (err1, result1) => {
+
+            if(err) return res.send(err);
+
+            return res.render('pages/items', {data: result1});
+        });
     });
 }
 
