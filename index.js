@@ -20,7 +20,7 @@ app.use('(/)', (req, res) => {
 
 app.use((req, res, next) => {
 
-    return res.send('Resource not found');
+    return res.render('pages/not_found');
 });
 
 
