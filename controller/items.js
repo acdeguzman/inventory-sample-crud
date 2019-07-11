@@ -36,13 +36,20 @@ exports.add_item = (req, res) => {
         amount
     } = req.body;
 
-    const query = `INSERT INTO items (name, qty, amount) values ('${name}', ${qty}, ${amount})`;
+    let query = `INSERT INTO items (name, qty, amount) values ('${name}', ${qty}, ${amount})`;
 
     db.query(query, (err, result, fields) => {
 
         if(err) return res.send(err);
 
-        return res.send({data: {message: "Item added!"}});
+        query = `SELECT * FROM items`;
+
+        db.query(query, (err1, result1) => {
+
+            if(err1) return res.send(err)
+
+            res.render('pages/items', {data: result1});
+        });
     });
 }
 
