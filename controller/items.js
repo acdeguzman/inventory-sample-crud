@@ -36,6 +36,8 @@ exports.add_item = (req, res) => {
         amount
     } = req.body;
 
+    if(isNaN(qty) || isNaN(amount)) return res.render('pages/add_item');
+    
     let query = `INSERT INTO items (name, qty, amount) values ('${name}', ${qty}, ${amount})`;
 
     db.query(query, (err, result, fields) => {
@@ -62,6 +64,13 @@ exports.update_item = (req, res) => {
         qty,
         amount
     } = req.body;
+
+    if(isNaN(qty) || isNaN(amount)) {
+        
+        req.body.id = id;
+        return res.render('pages/update_item', {data: req.body});
+
+    }
 
     let query = `UPDATE items SET name = '${name}', qty = ${qty}, amount = ${amount} WHERE id = ${id}`;
 
